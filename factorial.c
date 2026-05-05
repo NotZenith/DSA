@@ -1,11 +1,23 @@
 #include<stdio.h>
 
-int fact(int n){
-    if(n==0 || n==1){
-        return n;
+long fact(int n){
+    if(n <= 1){
+        return 1;
     }
+    return n * fact(n - 1);
+}
 
-    else{
-        return fact(n-1)+fact(n-2);
+int main(){
+    int n;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    if(n < 0){
+        return 1;
     }
+    else{
+    printf("Factorial of %d is %ld\n", n, fact(n));
+    }
+    return 0;
 }

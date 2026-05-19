@@ -1,153 +1,85 @@
-#include <stdio.h>     // For printf and scanf functions
+#include <stdio.h>
+#define SIZE 10
 
-#define MAX 100        // Maximum size of queue
+int queue[SIZE];
+int front = -1;
+int rear = -1;
 
-int queue[MAX];        // Array to store queue elements
 
-int front = -1;        // Front points to first element
-int rear = -1;         // Rear points to last element
 
-// ENQUEUE FUNCTION
-// Adds element at the rear/end
-void enqueue() {
 
-    int value; // Variable to store user input
-
-    // Check if queue is full
-    if (rear == MAX - 1) {
-
-        printf("Queue Overflow! Can't insert more elements.\n");
-
-    } else {
-
-        // If first element is being inserted
-        if (front == -1) {
-            front = 0; // Set front to first index
-        }
-
-        // Ask user for value
-        printf("Enter value to enqueue: ");
-        scanf("%d", &value);
-
-        // Move rear one step ahead
+void enqueue(int vlaue)
+{
+    if (rear == SIZE - 1)
+    {
+        printf("Queve overflow");
+    }
+    else if (front == -1 && rear == -1)
+    {
+        front = 0;
+        rear = 0;
+        printf("Enter the value to insert in queue: ");
+        scanf("%d", &vlaue);
+        queue[rear] = vlaue;
         rear++;
-
-        // Store value at rear position
-        queue[rear] = value;
-
-        // Show success message
-        printf("%d inserted into queue.\n", value);
+        printf("%d is inserted in queue", vlaue);
     }
 }
 
-// DEQUEUE FUNCTION
-// Removes element from front
-void dequeue() {
-
-    // Check if queue is empty
-    if (front == -1 || front > rear) {
-
-        printf("Queue Underflow! Nothing to remove.\n");
-
-    } else {
-
-        // Print removed element
-        printf("%d removed from queue.\n", queue[front]);
-
-        // Move front ahead
+void dequeue()
+{
+    if (front == -1 && rear == -1)
+    {
+        printf("Queue underflow");
+    }
+    else
+    {
+        printf("%d is deleted from queue", queue[front]);
         front++;
+    }
+}
 
-        // Reset queue if all elements removed
-        if (front > rear) {
-            front = rear = -1;
+
+void display()
+{
+    if (front == -1 && rear == -1)
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        printf("Elements in queue are: ");
+        for (int i = front; i <= rear; i++)
+        {
+            printf("%d ", queue[i]);
         }
     }
 }
 
-// PEEK FUNCTION
-// Shows front element
-void peek() {
-
-    // Check if queue is empty
-    if (front == -1) {
-
-        printf("Queue is empty.\n");
-
-    } else {
-
-        // Display front element
-        printf("Front element is: %d\n", queue[front]);
-    }
-}
-
-// DISPLAY FUNCTION
-// Displays all queue elements
-void display() {
-
-    // Check if queue is empty
-    if (front == -1) {
-
-        printf("Queue is empty.\n");
-
-    } else {
-
-        printf("Queue elements are:\n");
-
-        // Print elements from front to rear
-        for (int i = front; i <= rear; i++) {
-
-            printf("%d\n", queue[i]);
-        }
-    }
-}
-
-// MAIN FUNCTION
-int main() {
-
-    int choice; // Variable for menu choice
-
-    // Infinite loop for menu
-    while (1) {
-
-        // Menu display
-        printf("\n--- QUEUE MENU ---\n");
-        printf("1. Enqueue\n");
-        printf("2. Dequeue\n");
-        printf("3. Peek\n");
-        printf("4. Display\n");
-        printf("5. Exit\n");
-
-        // Ask user choice
+int main()
+{
+    int choice, value;
+    while (1)
+    {
+        printf("\n1. Enqueue\n2. Dequeue\n3. Display\n4. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-
-        // Perform action based on choice
-        switch (choice) {
-
-            case 1:
-                enqueue();
-                break;
-
-            case 2:
-                dequeue();
-                break;
-
-            case 3:
-                peek();
-                break;
-
-            case 4:
-                display();
-                break;
-
-            case 5:
-                printf("Exiting program...\n");
-                return 0;
-
-            default:
-                printf("Invalid input! Try again.\n");
+        switch (choice)
+        {
+        case 1:
+            enqueue(value);
+            break;
+        case 2:
+            dequeue();
+            break;
+        case 3:
+            display();
+            break;
+        case 4:
+            return 0;
+        default:
+            printf("Invalid choice");
         }
     }
-
-    return 0;
 }
+

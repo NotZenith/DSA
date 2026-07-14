@@ -1,3 +1,5 @@
 sorting
 *.pdf
-.vscode/
+.vscode/*.out
+a.out
+lab-9/linearProbing

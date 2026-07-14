@@ -53,18 +53,17 @@ void merge(int low, int mid, int high){
     int j = mid + 1;
     int k = low;
 
-    for(i = 0; i <= mid;){
-        for(j = 0; j <= high;){
+    while(i <= mid && j <= high){
+        
             if(arr[i] <= arr[i++]){
                 temp[k++]=arr[i++];
             }
         else{
             temp[k++]= arr[j++];
         }
-        }
     
     }
-    for(i = 0; i<= mid;){
+    while(i<= mid){
         temp[k++] = arr[i++];
     }
     while(i <= mid){
@@ -122,7 +121,7 @@ void quickSort(int low, int high){
 int main(){
     int choice;
 
-    while(1){
+    do {
         printf("\n");
         printf("1: Insert Element\n");
         printf("2: Display Array\n");
@@ -133,7 +132,7 @@ int main(){
         
         printf("\nEnter your choice: ");
         scanf("%d",&choice);
-    }
+    
 
     switch(choice){
         case 1:
@@ -157,9 +156,10 @@ int main(){
             if(n == 0){
                 printf("\nArray is empty\n");
             }
-            else
+            else{
                 mergeSort(0, n-1);
                 printf("\n Merge sort Completed \n");
+            }
             break;
 
         case 5:
@@ -171,10 +171,14 @@ int main(){
                 printf("Quick sort completed\n");
             }
             break;
+        case 6:
+            printf("Program temriinated.");
+            break;
         
         default:
             printf("Invalid choice.\n");
     }
+    } while(choice != 6);
     return 0;
 
 }

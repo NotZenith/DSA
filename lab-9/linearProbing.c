@@ -17,7 +17,7 @@ void quadraticInsert(int key);
 
 void initialize(){
     int i;
-    for(i = 0; i <= SIZE; i++){
+    for(i = 0; i < SIZE; i++){
         hashTable[i] = -1;
     }
 }
@@ -48,11 +48,8 @@ void quadraticInsert(int key){
     index = hash(key);
 
     while(hashTable[index] != -1){
+        index = hash(key);
         i++;
-    }
-    if(i == SIZE){
-        printf("\nHash table is full");
-        return;
     }
     hashTable[index] = key;
 }
@@ -104,9 +101,10 @@ int main(){
             initialize();
 
             printf("Enter no, of Elements: ");
-            scanf("%d",&n);
+            scanf("%d",&n2);
 
-            for(i2 = 0; i2 < n; i2++){
+            for(i2 = 0; i2 < n2; i2++){
+                printf("\nEnter elements: ");
                 scanf("%d", &key2);
                 quadraticInsert(key2);
             }
